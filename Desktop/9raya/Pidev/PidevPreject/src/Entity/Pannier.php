@@ -21,6 +21,9 @@ class Pannier
     #[ORM\OneToOne(inversedBy: 'pannier', cascade: ['persist', 'remove'])]
     private ?Utilisateur $client = null;
 
+    #[ORM\Column]
+    private ?float $PrixTotalPainner = null;
+
     public function __construct()
     {
         $this->Article = new ArrayCollection();
@@ -69,6 +72,18 @@ class Pannier
     public function setClient(?Utilisateur $client): self
     {
         $this->client = $client;
+
+        return $this;
+    }
+
+    public function getPrixTotalPainner(): ?float
+    {
+        return $this->PrixTotalPainner;
+    }
+
+    public function setPrixTotalPainner(float $PrixTotalPainner): self
+    {
+        $this->PrixTotalPainner = $PrixTotalPainner;
 
         return $this;
     }
