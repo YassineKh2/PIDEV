@@ -38,6 +38,15 @@ class ArticleRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    public function FindArticleByIdCategorie($id) {
+        return $this->createQueryBuilder('c')
+            ->join('c.blog','b')
+            ->addSelect('b')
+            ->where('b.id=:id')
+            ->setParameter('id',$id)
+            ->getQuery()
+            ->getResult();
+    }
 
 //    /**
 //     * @return Article[] Returns an array of Article objects

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ArticleRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
@@ -14,19 +15,29 @@ class Article
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'articles')]
+    #[Assert\NotBlank(message:"Categorie est requise")]
     private ?Categorie $Categorie = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message:"Nom de l'Article est requis")]
+    #[Assert\Length(min: 3,max: 15)]
     private ?string $NomArticle = null;
 
     #[ORM\Column]
+    #[Assert\Positive(message:"Prix de l'article doit etre positive")]
+    #[Assert\NotBlank(message:"Prix de l'article est requis")]
     private ?float $PrixArticle = null;
 
     #[ORM\Column]
+    #[Assert\Positive(message:"Quantite doit etre positive")]
+    #[Assert\NotBlank(message:"Quantite est requis")]
     private ?int $QuantiteArticle = null;
 
     #[ORM\ManyToOne(inversedBy: 'Article')]
     private ?Pannier $pannier = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $ImageArticle = null;
 
     public function getId(): ?int
     {
@@ -89,6 +100,18 @@ class Article
     public function setPannier(?Pannier $pannier): self
     {
         $this->pannier = $pannier;
+
+        return $this;
+    }
+
+    public function getImageArticle(): ?string
+    {
+        return $this->ImageArticle;
+    }
+
+    public function setImageArticle(string $ImageArticle): self
+    {
+        $this->ImageArticle = $ImageArticle;
 
         return $this;
     }

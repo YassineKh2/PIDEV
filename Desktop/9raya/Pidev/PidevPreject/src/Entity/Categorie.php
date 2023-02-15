@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\CategorieRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -16,10 +17,15 @@ class Categorie
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message:"Nom de le categorie est requis")]
+    #[Assert\Length(min: 3,max: 15)]
     private ?string $NomCategorie = null;
 
     #[ORM\OneToMany(mappedBy: 'Categorie', targetEntity: Article::class)]
     private Collection $articles;
+
+    #[ORM\Column(length: 255)]
+    private ?string $ImageCategorie = null;
 
     public function __construct()
     {
@@ -69,6 +75,18 @@ class Categorie
                 $article->setCategorie(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getImageCategorie(): ?string
+    {
+        return $this->ImageCategorie;
+    }
+
+    public function setImageCategorie(string $ImageCategorie): self
+    {
+        $this->ImageCategorie = $ImageCategorie;
 
         return $this;
     }
