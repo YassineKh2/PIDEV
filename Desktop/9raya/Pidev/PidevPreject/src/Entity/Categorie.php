@@ -21,10 +21,11 @@ class Categorie
     #[Assert\Length(min: 3,max: 15)]
     private ?string $NomCategorie = null;
 
-    #[ORM\OneToMany(mappedBy: 'Categorie', targetEntity: Article::class)]
+    #[ORM\OneToMany(mappedBy: 'Categorie', targetEntity: Article::class, cascade: ["remove","persist"])]
     private Collection $articles;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message:"L'image est requise")]
     private ?string $ImageCategorie = null;
 
     public function __construct()

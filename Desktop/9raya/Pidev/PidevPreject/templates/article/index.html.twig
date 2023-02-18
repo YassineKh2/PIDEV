@@ -1,37 +1,80 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseBack.html.twig' %}
 
 {% block body %}
-    <h1>Article index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>NomArticle</th>
-                <th>PrixArticle</th>
-                <th>QuantiteArticle</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for article in articles %}
-            <tr>
-                <td>{{ article.id }}</td>
-                <td>{{ article.NomArticle }}</td>
-                <td>{{ article.PrixArticle }}</td>
-                <td>{{ article.QuantiteArticle }}</td>
-                <td>
-                    <a href="{{ path('app_article_show', {'id': article.id}) }}">show</a>
-                    <a href="{{ path('app_article_edit', {'id': article.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="tab">
+        <div class="card">
+            <div class="card-body">
 
-    <a href="{{ path('app_article_new') }}">Create new</a>
+                <div class="table-responsive">
+                    <div class="card-header">
+                        <h4 class="card-title">Article</h4>
+                        <a href="{{ path('app_article_new') }}">Ajouter</a>
+                    </div>
+
+                    <table class="table table-bordered table-striped verticle-right table-responsive-sm table-hover">
+
+                        <thead>
+                        <tr>
+
+                            <th>ID</th>
+                            <th>Categorie</th>
+                            <th>Nom</th>
+                            <th>Prix</th>
+                            <th>Quantite</th>
+                            <th>Image</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for article in articles %}
+                            <tr href="{{ path('app_article_show', {'id': article.id}) }}">
+                                <td>{{ article.id }}</td>
+                                <td>{{ article.getCategorie().NomCategorie }}</td>
+                                <td>{{ article.NomArticle }}</td>
+                                <td>{{ article.PrixArticle }}</td>
+                                <td>{{ article.QuantiteArticle }}</td>
+                                <td><img src="{{ asset(article.ImageArticle) }}" width="100" height="100"  class="rounded-corners"></td>
+                                <td><span><a href="{{ path('app_article_edit', {'id': article.id}) }}" class="mr-4" data-toggle="tooltip"
+                                             data-placement="top" title="Modifer"><i
+                                                    class="fa fa-pencil color-muted"></i> </a>
+                                        <form method="post" action="{{ path('app_article_delete', {'id': article.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                        <button href="{{ path('app_article_delete', {'id': article.id}) }}" title="Supprimer" class="fa fa-trash-o color-danger border-0" >
+                                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ article.id) }}">
+                                            </button>
+                                        </form>
+                            </span>
+
+                                </td>
+                            </tr>
+                        {% else %}
+                            <td></td>
+                            <td>
+                                I'll n'a aucun article
+                            </td>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        .tab{
+            width: 1300px;
+            position: relative;
+            margin-top: 200px;
+            left: 400px;
+        }
+        button:hover{
+            color: red;
+        }
+        .rounded-corners{
+            border-radius: 10%;
+        }
+
+
+    </style>
+
+    <a href="{{ path('app_article_new') }}">Ajouter</a>
 {% endblock %}

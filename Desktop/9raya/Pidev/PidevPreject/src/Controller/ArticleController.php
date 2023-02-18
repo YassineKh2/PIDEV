@@ -29,6 +29,16 @@ class ArticleController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+                $pictureFile = $form->get('ImageArticle')->getData();
+                if ($pictureFile) {
+                    $pictureFileName = uniqid() . '.' . $pictureFile->guessExtension();
+                    $pictureFile->move(
+                        $this->getParameter('pictures_directory'),
+                        $pictureFileName
+                    );
+                    $pictureFileName = 'Back/images/CategorieImages/' . $pictureFileName;
+                    $article->setImageArticle($pictureFileName);
+                }
             $articleRepository->save($article, true);
 
             return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
@@ -55,6 +65,16 @@ class ArticleController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $pictureFile = $form->get('ImageArticle')->getData();
+            if ($pictureFile) {
+                $pictureFileName = uniqid() . '.' . $pictureFile->guessExtension();
+                $pictureFile->move(
+                    $this->getParameter('pictures_directory'),
+                    $pictureFileName
+                );
+                $pictureFileName = 'Back/images/CategorieImages/' . $pictureFileName;
+                $article->setImageArticle($pictureFileName);
+            }
             $articleRepository->save($article, true);
 
             return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);

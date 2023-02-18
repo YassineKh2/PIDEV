@@ -6,8 +6,10 @@ use App\Entity\Article;
 use App\Entity\Categorie;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 
 class ArticleType extends AbstractType
 {
@@ -23,8 +25,21 @@ class ArticleType extends AbstractType
                         'multiple' => false,
                         'expanded' => false,
                 ])
-            ->add('pannier')
-        ;
+            ->add('ArticleDiscription')
+            ->add('ImageArticle', FileType::class, [
+                'label' => 'Picture',
+                'mapped' => false,
+                'required' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1024k',
+                        'mimeTypes' => [
+                            'image/*',
+                        ],
+                        'mimeTypesMessage' => 'Donner une image Valide',
+                    ])
+                ],
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

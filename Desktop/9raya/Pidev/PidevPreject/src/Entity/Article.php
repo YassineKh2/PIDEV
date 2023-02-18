@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ArticleRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -33,11 +35,17 @@ class Article
     #[Assert\NotBlank(message:"Quantite est requis")]
     private ?int $QuantiteArticle = null;
 
-    #[ORM\ManyToOne(inversedBy: 'Article')]
-    private ?Pannier $pannier = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message:"L'image est requise")]
     private ?string $ImageArticle = null;
+
+    #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message:"La discription est requise")]
+    #[Assert\Length(min: 5)]
+    private ?string $ArticleDiscription = null;
+
+
 
     public function getId(): ?int
     {
@@ -92,18 +100,6 @@ class Article
         return $this;
     }
 
-    public function getPannier(): ?Pannier
-    {
-        return $this->pannier;
-    }
-
-    public function setPannier(?Pannier $pannier): self
-    {
-        $this->pannier = $pannier;
-
-        return $this;
-    }
-
     public function getImageArticle(): ?string
     {
         return $this->ImageArticle;
@@ -115,4 +111,18 @@ class Article
 
         return $this;
     }
+
+    public function getArticleDiscription(): ?string
+    {
+        return $this->ArticleDiscription;
+    }
+
+    public function setArticleDiscription(string $ArticleDiscription): self
+    {
+        $this->ArticleDiscription = $ArticleDiscription;
+
+        return $this;
+    }
+
+
 }
