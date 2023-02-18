@@ -175,38 +175,32 @@
         <div class="quixnav-scroll">
             <ul class="metismenu" id="menu">
                 <li class="nav-label first">Main Menu</li>
-                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
-                                class="icon icon-single-04"></i><span class="nav-text">Dashboard</span></a>
-                    <ul aria-expanded="false">
-                        <li><a href="">Dashboard 1</a></li>
-                        <li><a href="">Dashboard 2</a></li>
-                    </ul>
+
+                <li><a href="{{ path('app_admin_dashboard') }}">
+                        <i class="icon icon-single-04"></i><span>Dashboard</span></a>
                 </li>
                     <li class="nav-label">Utilisateurs</li>
                 <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
                         <i class="icon icon-app-store"></i><span class="nav-text">Pation</span></a>
                     <ul aria-expanded="false">
-                        <li><a href="">Consulter Pation</a></li>
-                        <li><a href="">Email</a></li>
-                        <li><a href="">Calendar</a></li>
+                        <li><a href="#">Consulter Pation</a></li>
                     </ul>
                 </li>
                 <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
                         <i class="icon icon-chart-bar-33"></i><span class="nav-text">Therapist</span></a>
                     <ul aria-expanded="false">
-                        <li><a href="">Consulter Therapist</a></li>
+                        <li><a href="#">Consulter Therapist</a></li>
                     </ul>
                 </li>
                 <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
                         <i class="icon icon-chart-bar-33"></i><span class="nav-text">Centre</span></a>
                     <ul aria-expanded="false">
-                        <li><a href="">Consulter Centre</a></li>
-                        <li><a href="">Ajouter Centre</a></li>
-                        <li><a href="">Modifer Centre</a></li>
-                        <li><a href="">Supprimer Centre</a></li>
+                        <li><a href="#">Consulter Centre</a></li>
+                        <li><a href="#">Ajouter Centre</a></li>
                     </ul>
                 </li>
-                <li class="nav-label">Shop</li>
+                <li class="nav-label">Boutique</li>
+
                 <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                                 class="icon icon-world-2"></i><span class="nav-text">Categorie</span></a>
                     <ul aria-expanded="false">
@@ -218,20 +212,19 @@
                 <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                                 class="icon icon-plug"></i><span class="nav-text">Article</span></a>
                     <ul aria-expanded="false">
-                        <li><a href="">Consulter les articles</a></li>
-                        <li><a href="">Ajouter un article</a></li>
+                        <li><a href="{{ path('app_article_index') }}">Consulter les articles</a></li>
+                        <li><a href="{{ path('app_article_new') }}">Ajouter un article</a></li>
                     </ul>
                 </li>
 
-                <li><a href="" aria-expanded="false"><i class="icon icon-globe-2">
-                        </i><span class="nav-text">zid wa7dek</span></a></li>
+
 
                 <li class="nav-label">Formation</li>
                 <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                                 class="icon icon-form"></i><span class="nav-text">Zid wa7dek</span></a>
                     <ul aria-expanded="false">
-                        <li><a href="">zid wa7dek</a></li>
-                        <li><a href="">zid wa7dek</a></li>
+                        <li><a href="#">zid wa7dek</a></li>
+                        <li><a href="#">zid wa7dek</a></li>
                     </ul>
                 </li>
 
@@ -239,8 +232,8 @@
                 <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                                 class="icon icon-layout-25"></i><span class="nav-text">Zid wa7dek</span></a>
                     <ul aria-expanded="false">
-                        <li><a href="table-bootstrap-basic.html">Bootstrap</a></li>
-                        <li><a href="table-datatable-basic.html">Datatable</a></li>
+                        <li><a href="#">Bootstrap</a></li>
+                        <li><a href="#">Datatable</a></li>
                     </ul>
                 </li>
 
@@ -248,8 +241,8 @@
                 <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                                 class="icon icon-single-copy-06"></i><span class="nav-text">zid wa7dek</span></a>
                     <ul aria-expanded="false">
-                        <li><a href="">zid wa7dek</a></li>
-                        <li><a href="">zid wa7dek</a></li>
+                        <li><a href="#">zid wa7dek</a></li>
+                        <li><a href="#">zid wa7dek</a></li>
                     </ul>
                 </li>
 
@@ -257,8 +250,8 @@
                 <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                                 class="icon icon-single-copy-06"></i><span class="nav-text">zid wa7dek</span></a>
                     <ul aria-expanded="false">
-                        <li><a href="">zid wa7dek</a></li>
-                        <li><a href="">zid wa7dek</a></li>
+                        <li><a href="#">zid wa7dek</a></li>
+                        <li><a href="#">zid wa7dek</a></li>
                     </ul>
                 </li>
             </ul>
@@ -461,7 +454,7 @@
                                                     <div class="testimonial-author-position">Founder-Ceo. Dell Corp
                                                     </div>
                                                 </div>
-                                                <img class="testimonial-author-img ml-3" src="./images/avatar/1.png" alt="" />
+                                                <img class="testimonial-author-img ml-3" src="{{ asset("Back/images/avatar/1.png") }}" alt="" />
                                             </div>
                                         </div>
                                     </div>
@@ -478,7 +471,7 @@
                                                     <div class="testimonial-author-position">Founder-Ceo. Dell Corp
                                                     </div>
                                                 </div>
-                                                <img class="testimonial-author-img ml-3" src="./images/avatar/1.png" alt="" />
+                                                <img class="testimonial-author-img ml-3" src="{{ asset('Back/images/avatar/1.png') }}" alt="" />
                                             </div>
                                         </div>
                                     </div>
@@ -495,7 +488,7 @@
                                                     <div class="testimonial-author-position">Founder-Ceo. Dell Corp
                                                     </div>
                                                 </div>
-                                                <img class="testimonial-author-img ml-3" src="./images/avatar/1.png" alt="" />
+                                                <img class="testimonial-author-img ml-3" src="{{ asset('Back/images/avatar/1.png') }}" alt="" />
                                             </div>
                                         </div>
                                     </div>
@@ -548,7 +541,7 @@
                                     <tr>
                                         <td>
                                             <div class="round-img">
-                                                <a href=""><img width="35" src="./images/avatar/1.png" alt=""></a>
+                                                <a href=""><img width="35" src="{{ asset('Back/images/avatar/1.png') }}" alt=""></a>
                                             </div>
                                         </td>
                                         <td>Lew Shawon</td>
@@ -559,7 +552,7 @@
                                     <tr>
                                         <td>
                                             <div class="round-img">
-                                                <a href=""><img width="35" src="./images/avatar/1.png" alt=""></a>
+                                                <a href=""><img width="35" src="{{ asset('Back/images/avatar/1.png') }}" alt=""></a>
                                             </div>
                                         </td>
                                         <td>Lew Shawon</td>
@@ -570,7 +563,7 @@
                                     <tr>
                                         <td>
                                             <div class="round-img">
-                                                <a href=""><img width="35" src="./images/avatar/1.png" alt=""></a>
+                                                <a href=""><img width="35" src="{{ asset('Back/images/avatar/1.png') }}" alt=""></a>
                                             </div>
                                         </td>
                                         <td>lew Shawon</td>
@@ -582,7 +575,7 @@
                                     <tr>
                                         <td>
                                             <div class="round-img">
-                                                <a href=""><img width="35" src="./images/avatar/1.png" alt=""></a>
+                                                <a href=""><img width="35" src="{{ asset('Back/images/avatar/1.png') }}" alt=""></a>
                                             </div>
                                         </td>
                                         <td>Lew Shawon</td>
@@ -593,7 +586,7 @@
                                     <tr>
                                         <td>
                                             <div class="round-img">
-                                                <a href=""><img width="35" src="./images/avatar/1.png" alt=""></a>
+                                                <a href=""><img width="35" src="{{ asset('Back/images/avatar/1.png') }}" alt=""></a>
                                             </div>
                                         </td>
                                         <td>lew Shawon</td>
@@ -605,7 +598,7 @@
                                     <tr>
                                         <td>
                                             <div class="round-img">
-                                                <a href=""><img width="35" src="./images/avatar/1.png" alt=""></a>
+                                                <a href=""><img width="35" src="{{ asset('Back/images/avatar/1.png') }}" alt=""></a>
                                             </div>
                                         </td>
                                         <td>Lew Shawon</td>
@@ -719,9 +712,7 @@
                                                             fight.</span><a href='#' class="ti-trash"></a></label></li>
                                         </ul>
                                     </div>
-                                    <div class="px-4">
-                                        <input type="text" class="tdl-new form-control" placeholder="Write new item and hit 'Enter'...">
-                                    </div>
+
                                 </div>
                             </div>
                         </div>

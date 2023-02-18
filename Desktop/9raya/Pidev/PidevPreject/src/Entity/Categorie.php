@@ -43,7 +43,7 @@ class Categorie
         return $this->NomCategorie;
     }
 
-    public function setNomCategorie(string $NomCategorie): self
+    public function setNomCategorie(?string $NomCategorie): self
     {
         $this->NomCategorie = $NomCategorie;
 
@@ -85,7 +85,7 @@ class Categorie
         return $this->ImageCategorie;
     }
 
-    public function setImageCategorie(string $ImageCategorie): self
+    public function setImageCategorie(?string $ImageCategorie): self
     {
         $this->ImageCategorie = $ImageCategorie;
 

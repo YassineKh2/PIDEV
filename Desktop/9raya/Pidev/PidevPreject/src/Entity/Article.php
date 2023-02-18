@@ -69,7 +69,7 @@ class Article
         return $this->NomArticle;
     }
 
-    public function setNomArticle(string $NomArticle): self
+    public function setNomArticle(?string $NomArticle): self
     {
         $this->NomArticle = $NomArticle;
 
@@ -105,7 +105,7 @@ class Article
         return $this->ImageArticle;
     }
 
-    public function setImageArticle(string $ImageArticle): self
+    public function setImageArticle(?string $ImageArticle): self
     {
         $this->ImageArticle = $ImageArticle;
 
