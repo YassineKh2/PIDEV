@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Evenement{% endblock %}
+
+{% block body %}
+
+
+
+    <h1>Create new Evenement</h1>
+    <h1>Create new Evenement</h1>
+    <h1>Create new Evenement</h1>
+    {{ include('evenement/_form.html.twig') }}
+
+    <a href="{{ path('app_evenement_index') }}">back to list</a>
+
+
+{#{{form_start(form,{'attr': {'novalidate': 'novalidate'}} )}}#}
+
+{#<table>#}
+{#    <tr>#}
+{#        <td> {{ form_label(form.NomEvenement, "Nom Evenement") }} </td>#}
+{#        <td> {{ form_widget(form.NomEvenement) }} </td>#}
+{#        <td> {{ form_errors(form.NomEvenement) }} </td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#        <td> {{ form_label(form.DateEvenement, "Date Evenement") }} </td>#}
+{#        <td> {{ form_widget(form.DateEvenement) }} </td>#}
+{#        <td> {{ form_errors(form.DateEvenement) }} </td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#        <td> {{ form_label(form.PrixEvenement, "Prix Evenement") }} </td>#}
+{#        <td> {{ form_widget(form.PrixEvenement) }} </td>#}
+{#        <td> {{ form_errors(form.PrixEvenement) }} </td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#        <td> {{ form_label(form.TypeEvenement, "Type Evenement") }} </td>#}
+{#        <td> {{ form_widget(form.TypeEvenement) }} </td>#}
+{#        <td> {{ form_errors(form.TypeEvenement) }} </td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#        <td> {{ form_label(form.Organisateur,"Organisateur") }} </td>#}
+{#        <td> {{ form_widget(form.Organisateur)}} </td>#}
+{#        <td> {{ form_errors(form.Organisateur) }} </td>#}
+{#    </tr>#}
+
+
+{#</table>#}
+
+{#{{form_widget(form.save)}}#}
+{#{{form_end(form)}}#}
+{% endblock %}
+
+
+
+
+
+{#{{ form_start(form) }}#}
+{#<div class="my-custom-class-for-errors">#}
+{#    {{ form_errors(form) }}#}
+{#</div>#}
+
+{#<div class="row">#}
+{#    <div class="col">#}
+{#        {{ form_row(form.NomEvenement) }}#}
+{#    </div>#}
+{#    <div class="col" id="some-custom-id">#}
+{#        {{ form_row(form.PrixEvenement) }}#}
+{#    </div>#}
+{#</div>#}
+{#{{ form_end(form) }}#}
+{#{% endblock %}#}
