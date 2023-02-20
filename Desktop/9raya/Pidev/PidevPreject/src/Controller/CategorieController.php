@@ -39,6 +39,8 @@ class CategorieController extends AbstractController
                 $pictureFileName = 'Back/images/CategorieImages/' . $pictureFileName;
                 $categorie->setImageCategorie($pictureFileName);
             }
+            else
+                $categorie->setImageCategorie("Back/images/CategorieImages/NoImageFound.png");
 
             $categorieRepository->save($categorie, true);
             return $this->redirectToRoute('app_categorie_index', [], Response::HTTP_SEE_OTHER);
@@ -76,6 +78,7 @@ class CategorieController extends AbstractController
                 $pictureFileName = 'Back/images/CategorieImages/' . $pictureFileName;
                 $categorie->setImageCategorie($pictureFileName);
             }
+
             $categorieRepository->save($categorie, true);
 
             return $this->redirectToRoute('app_categorie_index', [], Response::HTTP_SEE_OTHER);

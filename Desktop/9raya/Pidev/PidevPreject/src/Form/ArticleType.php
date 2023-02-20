@@ -7,6 +7,7 @@ use App\Entity\Categorie;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
@@ -19,20 +20,21 @@ class ArticleType extends AbstractType
             ->add('NomArticle')
             ->add('PrixArticle')
             ->add('QuantiteArticle')
+            ->add('RemisePourcentageArticle')
             ->add('Categorie', EntityType::class, [
                         'class' => Categorie::class,
                         'choice_label' => 'NomCategorie',
                         'multiple' => false,
                         'expanded' => false,
                 ])
-            ->add('ArticleDiscription')
+            ->add('ArticleDiscription', TextareaType::class)
             ->add('ImageArticle', FileType::class, [
                 'label' => 'Picture',
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
                     new File([
-                        'maxSize' => '1024k',
+                        'maxSize' => '5000k',
                         'mimeTypes' => [
                             'image/*',
                         ],

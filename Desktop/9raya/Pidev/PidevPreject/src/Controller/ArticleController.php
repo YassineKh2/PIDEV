@@ -39,10 +39,13 @@ class ArticleController extends AbstractController
                     $pictureFileName = 'Back/images/CategorieImages/' . $pictureFileName;
                     $article->setImageArticle($pictureFileName);
                 }
+                else
+                    $article->setImageArticle("Back/images/CategorieImages/NoImageFound.png");
             $articleRepository->save($article, true);
 
             return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
         }
+
 
         return $this->renderForm('article/new.html.twig', [
             'article' => $article,

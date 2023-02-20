@@ -21,7 +21,7 @@ class CategorieType extends AbstractType
                 'required' => false,
                 'constraints' => [
                     new File([
-                        'maxSize' => '1024k',
+                        'maxSize' => '5000k',
                         'mimeTypes' => [
                             'image/*',
                         ],

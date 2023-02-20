@@ -3,7 +3,37 @@
 {% block title %}Boutique{% endblock %}
 
 {% block body %}
+    <header id="header" class="fixed-top">
+        <div class="container d-flex align-items-center">
 
+            <a href="{{ path("app_index") }}" class="logo me-auto"><img src="{{ asset('Front/img/logo.png') }}" alt="" class="img-fluid"></a>
+            <h1 class="logo me-auto"><a href="{{ path("app_index") }}">Rehab Radar</a></h1>
+
+
+
+            <nav id="navbar" class="navbar order-last order-lg-0">
+                <ul>
+                    <li><a href="">Home</a></li>
+                    <li><a href="">Centre De Rehabilitation</a></li>
+                    <li><a href="">Therapie</a></li>
+                    <li><a href="">Forum</a></li>
+                    <li><a href="">Evenement</a></li>
+                    <li><a href="">Formation</a></li>
+                    <li><a class="active"  href="{{ path("app_shop") }}">Boutique</a></li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+
+            </nav><!-- .navbar -->
+
+            <a href="" class="get-started-btn">Nous Rejoindre</a>
+
+
+            <a href="{{ path("app_article_afficher_panier") }}" class="btn px-0 ml-3" style="position: relative; left:300px;">
+                <i class="fas fa-shopping-cart text-primary "></i>
+            </a>
+
+        </div>
+    </header>
     <br><br><br><br><br><br><br><br><br>
     <!-- Shop Detail Start -->
     <div class="container-fluid pb-5">
@@ -13,7 +43,6 @@
                         <div class="carousel-item active">
                             <img class="w-100 h-100" src="{{ asset(article.ImageArticle) }}" alt="Image">
                         </div>
-                    </a>
                 </div>
             </div>
 
@@ -30,8 +59,15 @@
                         </div>
                         <small class="pt-1">(99 Reviews)</small>
                     </div>
-                    <h3 class="font-weight-semi-bold mb-4">{{ article.PrixArticle }}$</h3>
+                    {% if (article.RemisePourcentageArticle != 0)  and (article.RemisePourcentageArticle != null) %}
+                        {% set NewPrix = article.PrixArticle - ( article.PrixArticle * article.RemisePourcentageArticle ) / 100  %}
+                        <h3 class="prixA pl-1">{{ NewPrix }}$</h3><h4 class="text-muted ml-2 "><del>{{ article.PrixArticle }}$</del></h4>
+                    {% else %}
+                        <h3 class="prixA">{{ article.PrixArticle }}$</h3>
+                    {% endif %}
                     <p class="mb-4">{{ article.ArticleDiscription }}</p>
+
+                    {% if  (article.getCategorie().getNomCategorie() != 'Livres') and (article.getCategorie().getNomCategorie() != 'Mugs') %}
                     <div class="d-flex mb-3">
                         <strong class="text-dark mr-3">Taille:</strong>
                         <form>
@@ -82,22 +118,25 @@
                             </div>
                         </form>
                     </div>
+            {% endif %}
                     <div class="d-flex align-items-center mb-4 pt-2">
                         <div class="input-group quantity mr-3" style="width: 130px;">
                             <div class="input-group-btn">
-                                <button class="btn btn-primary btn-minus">
+                                <button class="btn btn-primary btn-minus" id="minusButton">
                                     <i class="fa fa-minus"></i>
                                 </button>
                             </div>
-                            <input type="text" class="form-control bg-secondary border-0 text-center" value="1">
+                            <input type="text" id="quantity_input" class="form-control bg-secondary border-0 text-center removeSpin" value="1" disabled>
                             <div class="input-group-btn">
-                                <button class="btn btn-primary btn-plus">
+                                <button class="btn btn-primary btn-plus" id="plusButton">
                                     <i class="fa fa-plus"></i>
                                 </button>
                             </div>
+
                         </div>
-                        <button class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i>Ajouter à
-                            Pannier </button>
+                        <a href="{{ path("app_article_ajouter_panier",{'id' : article.id, 'quantity': 0}) }}" id="add_to_cart_button" class="btn btn-primary px-3">
+                            <i class="fa fa-shopping-cart mr-1"></i>Ajouter à Pannier
+                        </a>
                     </div>
                     <div class="d-flex pt-2">
                         <strong class="text-dark mr-2">Partager sur:</strong>
@@ -119,7 +158,6 @@
                 </div>
             </div>
         </div>
-
         <!-- Shop Detail End <div class="row px-xl-5">
             <div class="col">
                 <div class="bg-light p-30">
@@ -243,16 +281,19 @@
                         <div class="product-img position-relative overflow-hidden">
                             <img class="img-fluid w-100 ReccomandationImgs" src="{{ asset(article.ImageArticle) }}" alt="">
                             <div class="product-action">
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
+                                <a class="btn btn-outline-dark btn-square" href="{{ path("app_article_ajouter_panier",{'id' : article.id, 'quantity': 1}) }}"><i class="fa fa-shopping-cart"></i></a>
+                                <a class="btn btn-outline-dark btn-square" href="{{ path('app_article',{'id' :article.id }) }}"><i class="fa fa-search"></i></a>
                             </div>
                         </div>
                         <div class="text-center py-4">
                             <a class="h6 text-decoration-none text-truncate" href="">{{ article.NomArticle }}</a>
                             <div class="d-flex align-items-center justify-content-center mt-2">
-                                <h5>{{ article.PrixArticle }}</h5>
+                                {% if (article.RemisePourcentageArticle != 0)  and (article.RemisePourcentageArticle != null) %}
+                                    {% set NewPrix = article.PrixArticle - ( article.PrixArticle * article.RemisePourcentageArticle ) / 100  %}
+                                    <h5 class="prixA">{{ NewPrix }}$</h5>  <h6 class="text-muted ml-2"><del>{{ article.PrixArticle }}$</del></h6>
+                                {% else %}
+                                    <h5 class="prixA">{{ article.PrixArticle }}$</h5>
+                                {% endif %}
                             </div>
                             <div class="d-flex align-items-center justify-content-center mb-1">
                                 <small class="fa fa-star text-primary mr-1"></small>
@@ -316,6 +357,37 @@
             width: 10vh;
             object-fit: cover;
         }
-    </style>
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
 
+    </style>
+    <script>
+
+        // Select the input field and buttons
+        const minusButton = document.querySelector('#minusButton');
+        const plusButton = document.querySelector('#plusButton');
+        const quantityInput = document.querySelector('#quantity_input');
+        const addToCartButton = document.querySelector('#add_to_cart_button');
+
+        minusButton.addEventListener('click', () => {
+            let currentValue = parseInt(quantityInput.value);
+            if (currentValue > 1) {
+                quantityInput.setAttribute('value',currentValue - 1);
+            }
+        });
+
+        plusButton.addEventListener('click', () => {
+            let currentValue = parseInt(quantityInput.value);
+            quantityInput.setAttribute('value',currentValue + 1);
+        });
+
+        addToCartButton.addEventListener('click', () => {
+            let currentValue = parseInt(quantityInput.value);
+            addToCartButton.href = '{{ path("app_article_ajouter_panier", {'id': article.id, 'quantity': " "}) }}' + currentValue;
+        });
+
+    </script>
 {% endblock %}

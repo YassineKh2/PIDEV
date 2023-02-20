@@ -22,7 +22,7 @@ class Article
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message:"Nom de l'Article est requis")]
-    #[Assert\Length(min: 3,max: 15)]
+    #[Assert\Length(min: 3,max: 30)]
     private ?string $NomArticle = null;
 
     #[ORM\Column]
@@ -37,13 +37,22 @@ class Article
 
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message:"L'image est requise")]
+    #[Assert\Image(
+        minWidth: 300,
+        maxWidth: 10000,
+        maxHeight: 10000,
+        minHeight: 300,
+    )]
     private ?string $ImageArticle = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 1000)]
     #[Assert\NotBlank(message:"La discription est requise")]
     #[Assert\Length(min: 5)]
     private ?string $ArticleDiscription = null;
+
+    #[ORM\Column(nullable: true)]
+    #[Assert\Positive(message:"Remise doit etre positive")]
+    private ?int $RemisePourcentageArticle = null;
 
 
 
@@ -120,6 +129,18 @@ class Article
     public function setArticleDiscription(string $ArticleDiscription): self
     {
         $this->ArticleDiscription = $ArticleDiscription;
+
+        return $this;
+    }
+
+    public function getRemisePourcentageArticle(): ?int
+    {
+        return $this->RemisePourcentageArticle;
+    }
+
+    public function setRemisePourcentageArticle(?int $RemisePourcentageArticle): self
+    {
+        $this->RemisePourcentageArticle = $RemisePourcentageArticle;
 
         return $this;
     }
