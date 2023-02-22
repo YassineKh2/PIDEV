@@ -41,6 +41,9 @@ class Evenement
 //    #[Assert\NotBlank(message:"enter event organizer ")]
     private ?Organisateur $Organisateur = null;
 
+    #[ORM\OneToOne(inversedBy: 'evenement', cascade: ['persist', 'remove'])]
+    private ?Adresse $Adresse = null;
+
     public function __construct()
     {
         $this->utilisateurs = new ArrayCollection();
@@ -146,6 +149,18 @@ class Evenement
     public function setOrganisateur(?Organisateur $Organisateur): self
     {
         $this->Organisateur = $Organisateur;
+
+        return $this;
+    }
+
+    public function getAdresse(): ?Adresse
+    {
+        return $this->Adresse;
+    }
+
+    public function setAdresse(?Adresse $Adresse): self
+    {
+        $this->Adresse = $Adresse;
 
         return $this;
     }

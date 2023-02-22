@@ -2,7 +2,10 @@
 
 namespace App\Form;
 
+use App\Entity\Categorie;
 use App\Entity\Evenement;
+use App\Entity\Organisateur;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -17,8 +20,12 @@ class EvenementType extends AbstractType
             ->add('NombreParticipantEvenement')
             ->add('PrixEvenement')
             ->add('TypeEvenement')
-            ->add('utilisateurs')
-            ->add('Organisateur')
+            ->add('Organisateur', EntityType::class ,[
+                'class' => Organisateur::class,
+                'choice_label'=> 'NomOrganisateur',
+                'multiple'=>false,
+                'expanded'=>false,
+            ])
         ;
     }
 

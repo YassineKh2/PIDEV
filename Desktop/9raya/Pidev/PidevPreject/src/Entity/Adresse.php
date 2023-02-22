@@ -34,6 +34,9 @@ class Adresse
     #[ORM\OneToOne(mappedBy: 'Adresse', cascade: ['persist', 'remove'])]
     private ?Centre $centre = null;
 
+    #[ORM\OneToOne(mappedBy: 'Adresse', cascade: ['persist', 'remove'])]
+    private ?Evenement $evenement = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -149,6 +152,28 @@ class Adresse
         }
 
         $this->centre = $centre;
+
+        return $this;
+    }
+
+    public function getEvenement(): ?Evenement
+    {
+        return $this->evenement;
+    }
+
+    public function setEvenement(?Evenement $evenement): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($evenement === null && $this->evenement !== null) {
+            $this->evenement->setAdresse(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($evenement !== null && $evenement->getAdresse() !== $this) {
+            $evenement->setAdresse($this);
+        }
+
+        $this->evenement = $evenement;
 
         return $this;
     }
