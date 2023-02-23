@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}creer{% endblock %}
+
+{% block body %}
+    <style>
+        h2
+        {
+            position: absolute;
+            font-family: "lato", sans-serif;
+            font-size: 50px;
+            left: 35%;
+            color: #4daea7
+        }
+        .btn-primary{
+            background: #4daea7;
+            color: #fff;
+            border-radius: 20px;
+            position: absolute;
+            top: 80%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 8px 25px;
+
+            transition: 0.3s;
+            font-size: 14px;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background: rgb(86, 224, 224);
+            background: linear-gradient(0deg, rgb(86, 224, 224) 0%, rgb(86, 224, 224) 100%);
+        }
+        .btn-primary3{
+            background: #4daea7;
+            color: #fff;
+            border-radius: 20px;
+            position: absolute;
+            top: 90%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 8px 25px;
+
+            transition: 0.3s;
+            font-size: 14px;
+            display: inline-block;
+        }
+
+        .btn-primary3:hover {
+            background: rgb(86, 224, 224);
+            background: linear-gradient(0deg, rgb(86, 224, 224) 0%, rgb(86, 224, 224) 100%);
+        }
+        .btn-primary2{
+            background: #4daea7;
+            color: #fff;
+            border-radius: 80px;
+            position: absolute;
+            top: 50%;
+            left: 36%;
+            padding: 40px 100px;
+            font-size: 30px;
+
+        }
+
+
+        .imgPath {
+            max-width: 100%;
+            max-height: 100%;
+
+            object-fit: cover;
+        }
+
+    </style>
+    <div class="image-container">
+        <img src="{{ asset('Front/img/path.jpg') }}" alt="A picture of a patient" class="imgPath">
+        <a  type="text" class="btn-primary2">COMPTE CREER</a>
+        <a href="{{ path('app_index') }}" type="button" class="btn-primary3">back to menu</a>
+
+
+
+    </div>
+
+
+{% endblock %}

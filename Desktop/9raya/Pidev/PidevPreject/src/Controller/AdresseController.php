@@ -37,7 +37,7 @@ class AdresseController extends AbstractController
             $therapist->setAdresse($adresse);
             $TherapistRep->save($therapist,true);
 
-            return $this->redirectToRoute('app_adresse_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_utilisateur_done', [], Response::HTTP_SEE_OTHER);
         }
 
 

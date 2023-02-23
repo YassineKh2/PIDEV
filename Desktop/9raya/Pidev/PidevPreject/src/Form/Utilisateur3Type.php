@@ -19,8 +19,8 @@ class Utilisateur3Type extends AbstractType
             ->add('PseudoUtilisateur')
             ->add('EmailUtilisateur')
             ->add('PasswordUtilisateur', PasswordType::class, [
-                
-                'mapped' => false,
+
+                'mapped' => true,
             ]);
 
     }

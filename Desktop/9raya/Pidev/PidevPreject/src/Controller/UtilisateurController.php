@@ -27,6 +27,16 @@ class UtilisateurController extends AbstractController
             'id' => $id,
         ]);
     }
+    #[Route('/done', name: 'app_utilisateur_done')]
+    public function done(): Response
+    {
+        return $this->render('utilisateur/done.html.twig',[]);
+    }
+    #[Route('/log', name: 'app_utilisateur_log')]
+    public function log(): Response
+    {
+        return $this->render('utilisateur/login.html.twig',[]);
+    }
 
     #[Route('/new', name: 'app_utilisateur_new', methods: ['GET', 'POST'])]
     public function new(Request $request, UtilisateurRepository $utilisateurRepository): Response

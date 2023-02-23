@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New utilisateur{% endblock %}
+
+{% block body %}
+
+
+
+
+    <div class="formArticle">
+        <div class="row">
+            <div class="col-xl-12 col-xxl-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Ajouter un Utilisateur</h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="#" id="step-form-horizontal" class="step-form-horizontal">
+                            <div>
+                                <section>
+
+
+
+                                        <div class="col-lg-12 mb-4">
+                                            <div class="form-group">
+                                                <label class="text-label">Email </label>
+                                                <input type="text" class="inpput">
+                                                <div class="input-group"  >
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 mb-4">
+                                            <div class="form-group">
+                                                <label class="text-label">Mot De Passe </label>
+                                                <input type="text" class="inppput">
+                                                <div class="input-group">
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    <a href="{{ path('app_index') }}" class="btn">S'authentifier</a>
+
+
+
+                                </section>
+
+
+                            </div>
+                        </form>
+                        <a href="{{ path('app_utilisateur_log')}}" class="log">Creez un compte</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <style>
+        .formArticle {
+            margin-top: 150px;
+            position: relative;
+            width: 800px;
+            left: 350px;
+            margin-bottom: 150px;
+        }
+        .log{
+            color:#007299;
+        }
+
+        .inpput{
+            position: relative;
+            margin-left: 60px;
+        }
+        .btn{
+            background: #4daea7;
+            color: #fff;
+            border-radius: 20px;
+            position: absolute;
+            top: 80%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 8px 25px;
+
+            transition: 0.3s;
+            font-size: 14px;
+            display: inline-block;
+        }
+    </style>
+
+
+
+
+{% endblock %}

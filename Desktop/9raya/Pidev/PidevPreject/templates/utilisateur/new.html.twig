@@ -71,10 +71,13 @@
 
 
                                         <button href="{{ path('app_utilisateur_choix',{'id':0}) }}" class="btn">{{ button_label|default('Suivant') }}</button>
+
                                 </section>
                                 {{ form_end(form) }}
+
                             </div>
                         </form>
+                        <a href="{{ path('app_utilisateur_log')}}" class="log">Vous avez deja un compte? Login</a>
                     </div>
                 </div>
             </div>
@@ -90,6 +93,9 @@
             width: 800px;
             left: 350px;
             margin-bottom: 150px;
+        }
+        .log{
+            color:#007299;
         }
     </style>
 

@@ -32,9 +32,21 @@ class Therapist
 
 
     #[ORM\Column(length: 255)]
+    #[Assert\Image(
+        minWidth: 300,
+        maxWidth: 10000,
+        maxHeight: 10000,
+        minHeight: 300,
+    )]
     private ?string $ImageTherapist = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Image(
+        minWidth: 300,
+        maxWidth: 10000,
+        maxHeight: 10000,
+        minHeight: 300,
+    )]
     private ?string $ImageCvTherapist = null;
 
     public function __construct()
