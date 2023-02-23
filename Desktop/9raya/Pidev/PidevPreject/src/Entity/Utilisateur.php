@@ -6,6 +6,7 @@ use App\Repository\UtilisateurRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UtilisateurRepository::class)]
 class Utilisateur
@@ -16,15 +17,23 @@ class Utilisateur
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message:"nom est requise")]
+    #[Assert\Length(min: 3,max: 15)]
     private ?string $NomUtilisateur = null;
 
+
     #[ORM\Column(length: 255)]
+    #[Assert\Length(min: 3,max: 15)]
+    #[Assert\NotBlank(message:"prenom est requise")]
     private ?string $PrenomUtilisateur = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message:"pseudo est requise")]
     private ?string $PseudoUtilisateur = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message:"Email est requise")]
+    #[Assert\Email(message: 'The email {{ value }} is not a valid email.',)]
     private ?string $EmailUtilisateur = null;
 
     #[ORM\OneToOne(mappedBy: 'IdUtilisateur', cascade: ['persist', 'remove'])]
@@ -34,6 +43,7 @@ class Utilisateur
     private ?Patient $patient = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message:"mot de passe est requise")]
     private ?string $PasswordUtilisateur = null;
 
     #[ORM\ManyToMany(targetEntity: Evenement::class, inversedBy: 'utilisateurs')]

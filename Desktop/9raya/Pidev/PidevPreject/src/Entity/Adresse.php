@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\AdresseRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: AdresseRepository::class)]
 class Adresse
@@ -14,15 +15,25 @@ class Adresse
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Length(min: 3,max: 15)]
+    #[Assert\NotBlank(message:"Le nom rue est requis")]
     private ?string $NomRue = null;
 
     #[ORM\Column]
+
+    #[Assert\NotBlank(message:"Num Rue est requis")]
+    #[Assert\Positive(message:"Num Rue etre positive")]
     private ?int $NumRue = null;
 
     #[ORM\Column]
+
+    #[Assert\NotBlank(message:"Code Postal est requis")]
+    #[Assert\Positive(message:"Code Postal doit etre positive")]
     private ?int $CodePostal = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Length(min: 3,max: 15)]
+    #[Assert\NotBlank(message:"Le nom du Gouvernerat est requis")]
     private ?string $Gouvernorat = null;
 
     #[ORM\OneToOne(mappedBy: 'Adresse', cascade: ['persist', 'remove'])]

@@ -1,0 +1,62 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}Utilisateur index{% endblock %}
+
+{% block body %}
+    <style>
+        .tab{
+
+            width: 1000px;
+            position: relative;
+            margin-top: 200px;
+            left: 300px;
+        }
+        button:hover{
+            color: red;
+        }
+        .rounded-corners{
+            border-radius: 10%;
+        }
+
+
+    </style>
+<div class="tab">
+    <h1>Utilisateur index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>NomUtilisateur</th>
+                <th>PrenomUtilisateur</th>
+                <th>PseudoUtilisateur</th>
+                <th>EmailUtilisateur</th>
+                <th>PasswordUtilisateur</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for utilisateur in utilisateurs %}
+            <tr>
+                <td>{{ utilisateur.id }}</td>
+                <td>{{ utilisateur.NomUtilisateur }}</td>
+                <td>{{ utilisateur.PrenomUtilisateur }}</td>
+                <td>{{ utilisateur.PseudoUtilisateur }}</td>
+                <td>{{ utilisateur.EmailUtilisateur }}</td>
+                <td>{{ utilisateur.PasswordUtilisateur }}</td>
+                <td>
+                    <a href="{{ path('app_utilisateur_show', {'id': utilisateur.id}) }}">show</a>
+                    <a href="{{ path('app_utilisateur_edit', {'id': utilisateur.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_utilisateur_new') }}">Create new</a>
+</div>
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Utilisateur choix{% endblock %}
+
+{% block body %}
+
+
+    <section>
+        <style>
+            .image-container {
+                max-width: 100%;
+                max-height: 100%;
+                width: 50%;
+                height: 100vh;
+                float: right;
+                position: relative;
+
+            }
+            .image-container2{
+                max-width: 100%;
+                max-height: 100%;
+                width: 50%;
+                height: 100vh;
+                float: left;
+                position: relative;
+            }
+
+            .imgP {
+                max-width: 100%;
+                max-height: 100%;
+                height: 100vh;
+                width: 100vh;
+                object-fit: cover;
+            }
+            .btn-primary{
+                background: #4daea7;
+                color: #fff;
+                border-radius: 20px;
+                position: absolute;
+                top: 80%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                padding: 8px 25px;
+
+                transition: 0.3s;
+                font-size: 14px;
+                display: inline-block;
+            }
+
+            .btn-primary:hover {
+                background: rgb(86, 224, 224);
+                background: linear-gradient(0deg, rgb(86, 224, 224) 0%, rgb(86, 224, 224) 100%);
+            }
+
+
+        </style>
+        <div class="image-container">
+            <img src="{{ asset('Front/img/pation.jpg') }}" alt="A picture of a patient" class="imgP">
+
+            <a  type="button" class="btn-primary">S'authentifier en tant que PATIENT</a>
+
+        </div>
+        <div class="image-container2">
+            <img src="{{ asset('Front/img/therapist pic.jpg') }}" alt="A picture of a psy" class="imgP">
+
+
+            <a href="{{ path('app_therapist_new',{'id':id}) }}" type="button" class="btn-primary">S'authentifier en tant que THERAPIST</a>
+        </div>
+
+
+
+    </section>
+
+
+{% endblock %}

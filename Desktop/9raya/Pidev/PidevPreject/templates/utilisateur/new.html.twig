@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New utilisateur{% endblock %}
+
+{% block body %}
+
+    {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+
+
+    <div class="formArticle">
+        <div class="row">
+            <div class="col-xl-12 col-xxl-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Ajouter un Utilisateur</h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="#" id="step-form-horizontal" class="step-form-horizontal">
+                            <div>
+                                <section>
+                                    <div class="row">
+                                        <div class="col-lg-12 mb-4">
+                                            <div class="form-group">
+                                                <label class="text-label">Nom Utilisateur</label>
+                                                <div class="input-group">
+                                                    {{ form_widget(form.NomUtilisateur, { 'attr': {'class': 'form-control' } })}}
+                                                </div>
+                                                <li class="text-danger">{{ form_errors(form.NomUtilisateur, { 'attr': {'class': 'form-control' } })}}</li>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-12 mb-4">
+                                            <div class="form-group">
+                                                <label class="text-label">Prenom Utilisateur</label>
+                                                <div class="input-group">
+                                                    {{ form_widget(form.PrenomUtilisateur, { 'attr': {'class': 'form-control' } })}}
+                                                </div>
+                                                <li class="text-danger">{{ form_errors(form.PrenomUtilisateur, { 'attr': {'class': 'form-control' } })}}</li>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-12 mb-4">
+                                            <div class="form-group">
+                                                <label class="text-label">Pseudo </label>
+                                                <div class="input-group">
+                                                    {{ form_widget(form.PseudoUtilisateur, { 'attr': {'class': 'form-control' } })}}
+                                                </div>
+                                                <li class="text-danger">{{ form_errors(form.PseudoUtilisateur) }}</li>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-12 mb-4">
+                                            <div class="form-group">
+                                                <label class="text-label">Email </label>
+                                                <div class="input-group">
+                                                    {{ form_widget(form.EmailUtilisateur, { 'attr': {'class': 'form-control' } })}}
+                                                </div>
+                                                <li class="text-danger">{{ form_errors(form.EmailUtilisateur) }}</li>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 mb-4">
+                                            <div class="form-group">
+                                                <label class="text-label">Mot De Passe </label>
+                                                <div class="input-group">
+                                                    {{ form_widget(form.PasswordUtilisateur, { 'attr': {'class': 'form-control' } })}}
+                                                </div>
+                                                <li class="text-danger">{{ form_errors(form.PasswordUtilisateur) }}</li>
+                                            </div>
+                                        </div>
+
+
+
+                                        <button href="{{ path('app_utilisateur_choix',{'id':0}) }}" class="btn">{{ button_label|default('Suivant') }}</button>
+                                </section>
+                                {{ form_end(form) }}
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <style>
+        .formArticle {
+            margin-top: 150px;
+            position: relative;
+            width: 800px;
+            left: 350px;
+            margin-bottom: 150px;
+        }
+    </style>
+
+
+
+
+{% endblock %}

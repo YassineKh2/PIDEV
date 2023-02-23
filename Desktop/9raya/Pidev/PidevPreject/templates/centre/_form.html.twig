@@ -1,0 +1,84 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block body %}
+    {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+
+    <div class="formArticle">
+        <div class="row">
+            <div class="col-xl-12 col-xxl-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Ajouter un centre</h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="#" id="step-form-horizontal" class="step-form-horizontal">
+                            <div>
+                                <section>
+                                    <div class="row">
+                                        <div class="col-lg-12 mb-4">
+                                            <div class="form-group">
+                                                <label class="text-label">Nom centre</label>
+                                                <div class="input-group">
+                                                    {{ form_widget(form.NomCentre, { 'attr': {'class': 'form-control' } })}}
+                                                </div>
+                                                <li class="text-danger">{{ form_errors(form.NomCentre, { 'attr': {'class': 'form-control' } })}}</li>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-12 mb-4">
+                                            <div class="form-group">
+                                                <label class="text-label">Capacite Centre</label>
+                                                <div class="input-group">
+                                                    {{ form_widget(form.CapaciteCentre, { 'attr': {'class': 'form-control' } })}}
+                                                </div>
+                                                <li class="text-danger">{{ form_errors(form.CapaciteCentre, { 'attr': {'class': 'form-control' } })}}</li>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-12 mb-4">
+                                            <div class="form-group">
+                                                <label class="text-label">NombreBlocCentre</label>
+                                                <div class="input-group">
+                                                    {{ form_widget(form.NombreBlocCentre, { 'attr': {'class': 'form-control' } })}}
+                                                </div>
+                                                <li class="text-danger">{{ form_errors(form.NombreBlocCentre) }}</li>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-12 mb-4">
+                                            <div class="form-group">
+                                                <label class="text-label">Adresse</label>
+                                                <div class="input-group">
+                                                    {{ form_widget(form.Adresse, { 'attr': {'class': 'form-control' } })}}
+                                                </div>
+                                                <li class="text-danger">{{ form_errors(form.Adresse) }}</li>
+                                            </div>
+                                        </div>
+
+
+                                    <button class="btn">{{ button_label|default('Save') }}</button>
+                                </section>
+                                {{ form_end(form) }}
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <a href="{{ path('app_article_index') }}">Back to list</a>
+    </div>
+
+    <style>
+        .formArticle {
+            margin-top: 150px;
+            position: relative;
+            width: 1300px;
+            left: 500px;
+        }
+    </style>
+
+
+
+    <a href="{{ path('app_article_index') }}">back to list</a>
+{% endblock %}

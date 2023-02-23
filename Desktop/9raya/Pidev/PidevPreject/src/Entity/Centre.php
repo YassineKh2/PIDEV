@@ -6,6 +6,7 @@ use App\Repository\CentreRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CentreRepository::class)]
 class Centre
@@ -16,12 +17,17 @@ class Centre
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message:"Le nom centre est requis")]
     private ?string $NomCentre = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank(message:"La capacite du centre est requis")]
+    #[Assert\Positive(message:"La capacite doit etre positive")]
     private ?int $CapaciteCentre = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank(message:"Le nombre des blocs est requis")]
+    #[Assert\Positive(message:"le nombre des blocs doit etre positive")]
     private ?int $NombreBlocCentre = null;
 
     #[ORM\OneToOne(inversedBy: 'centre', cascade: ['persist', 'remove'])]

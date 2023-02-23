@@ -6,6 +6,7 @@ use App\Repository\TherapistRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: TherapistRepository::class)]
 class Therapist
@@ -16,6 +17,7 @@ class Therapist
     private ?int $id = null;
 
     #[ORM\OneToOne(inversedBy: 'therapist', cascade: ['persist', 'remove'])]
+
     private ?Utilisateur $IdUtilisateur = null;
 
     #[ORM\OneToOne(inversedBy: 'therapist', cascade: ['persist', 'remove'])]
@@ -25,7 +27,15 @@ class Therapist
     private Collection $patients;
 
     #[ORM\Column]
+    #[Assert\NotBlank(message:"Numero telephone est requise")]
     private ?int $NumTelTherapist = null;
+
+
+    #[ORM\Column(length: 255)]
+    private ?string $ImageTherapist = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $ImageCvTherapist = null;
 
     public function __construct()
     {
@@ -99,6 +109,30 @@ class Therapist
     public function setNumTelTherapist(int $NumTelTherapist): self
     {
         $this->NumTelTherapist = $NumTelTherapist;
+
+        return $this;
+    }
+
+    public function getImageTherapist(): ?string
+    {
+        return $this->ImageTherapist;
+    }
+
+    public function setImageTherapist(string $ImageTherapist): self
+    {
+        $this->ImageTherapist = $ImageTherapist;
+
+        return $this;
+    }
+
+    public function getImageCvTherapist(): ?string
+    {
+        return $this->ImageCvTherapist;
+    }
+
+    public function setImageCvTherapist(string $ImageCvTherapist): self
+    {
+        $this->ImageCvTherapist = $ImageCvTherapist;
 
         return $this;
     }
