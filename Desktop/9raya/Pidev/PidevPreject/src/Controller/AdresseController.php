@@ -126,6 +126,23 @@ class AdresseController extends AbstractController
             'form' => $form,
         ]);
     }
+    #[Route('/{id}/edit_addr_event', name: 'app_adresse_edit_addr_event', methods: ['GET', 'POST'])]
+    public function edit_addr_event (Request $request, Adresse $adresse, AdresseRepository $adresseRepository): Response
+    {
+        $form = $this->createForm(AdresseType::class, $adresse);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $adresseRepository->save($adresse, true);
+
+            return $this->redirectToRoute('app_evenement_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('adresse/edit.html.twig', [
+            'adresse' => $adresse,
+            'form' => $form,
+        ]);
+    }
     #[Route('/{id}', name: 'app_adresse_delete', methods: ['POST'])]
     public function delete(Request $request, Adresse $adresse, AdresseRepository $adresseRepository): Response
     {

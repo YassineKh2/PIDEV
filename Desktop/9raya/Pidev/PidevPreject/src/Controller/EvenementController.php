@@ -69,9 +69,21 @@ class EvenementController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $pictureFile = $form->get('Imageevenement')->getData();
+            if ($pictureFile) {
+                $pictureFileName = uniqid() . '.' . $pictureFile->guessExtension();
+                $pictureFile->move(
+                    $this->getParameter('pictures_directory_events'),
+                    $pictureFileName
+                );
+                $pictureFileName = 'Back/images/events/' . $pictureFileName;
+                $evenement->setImageevenement($pictureFileName);
+            }
             $evenementRepository->save($evenement, true);
 
-            return $this->redirectToRoute('app_evenement_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_adresse_edit_addr_event', [
+                'id'=>$evenement->getAdresse()->getId()
+            ], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('evenement/edit.html.twig', [

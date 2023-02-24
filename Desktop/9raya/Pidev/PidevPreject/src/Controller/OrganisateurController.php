@@ -62,7 +62,7 @@ class OrganisateurController extends AbstractController
 
 
             return $this->redirectToRoute('app_adresse_edit_addr_org', [
-                'id'=>$organisateur->getId()
+                'id'=>$organisateur->getAdresse()->getId()
             ], Response::HTTP_SEE_OTHER);
         }
 

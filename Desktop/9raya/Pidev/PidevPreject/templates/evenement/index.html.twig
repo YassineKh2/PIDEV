@@ -42,6 +42,7 @@
                                     <th scope="col">Nom Evenement</th>
                                     <th scope="col">Date Evenement</th>
                                     <th scope="col">Nombre Participant Evenement</th>
+                                    <th scope="col">Image Evenement</th>
                                     <th scope="col">Prix Evenement</th>
                                     <th scope="col">Type Evenement</th>
                                     <th scope="col">action</th>
@@ -54,6 +55,7 @@
                                         <td>{{ evenement.NomEvenement }}</td>
                                         <td>{{ evenement.DateEvenement ? evenement.DateEvenement|date('Y-m-d') : ''  }}</td>
                                         <td>{{ evenement.NombreParticipantEvenement }}</td>
+                                        <td><img src="{{ asset(evenement.Imageevenement) }}" width="100" height="100"  class="rounded-corners"></td>
                                         <td>{{ evenement.PrixEvenement}}</td>
                                         <td>{{ evenement.TypeEvenement }}</td>
                                         <td>
