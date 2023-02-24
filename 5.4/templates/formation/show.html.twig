@@ -1,0 +1,155 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        {% block title %} Formation info{% endblock %}
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
+        <meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
+        <meta name="author" content="FREEHTML5.CO" />
+
+        <!--
+          //////////////////////////////////////////////////////
+
+          FREE HTML5 TEMPLATE
+          DESIGNED & DEVELOPED by FREEHTML5.CO
+
+          Website: 		http://freehtml5.co/
+          Email: 			info@freehtml5.co
+          Twitter: 		http://twitter.com/fh5co
+          Facebook: 		https://www.facebook.com/fh5co
+
+          //////////////////////////////////////////////////////
+           -->
+
+        <!-- Facebook and Twitter integration -->
+        <meta property="og:title" content=""/>
+        <meta property="og:image" content=""/>
+        <meta property="og:url" content=""/>
+        <meta property="og:site_name" content=""/>
+        <meta property="og:description" content=""/>
+        <meta name="twitter:title" content="" />
+        <meta name="twitter:image" content="" />
+        <meta name="twitter:url" content="" />
+        <meta name="twitter:card" content="" />
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <link rel="shortcut icon" href="favicon.ico">
+
+        <!-- <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'> -->
+
+        <!-- Animate.css -->
+        <link rel="stylesheet" href="{{ asset('Front/module/css/animate.css')}}">
+        <!-- Icomoon Icon Fonts-->
+        <link rel="stylesheet" href="{{ asset('Front/module/css/icomoon.css')}}">
+        <!-- Bootstrap  -->
+        <link rel="stylesheet" href="{{ asset('Front/module/css/bootstrap.css')}}">
+        <!-- Superfish -->
+        <link rel="stylesheet" href="{{ asset('Front/module/css/superfish.css')}}">
+        <!-- Magnific Popup -->
+        <link rel="stylesheet" href="{{ asset('Front/module/css/magnific-popup.css')}}">
+
+        <link rel="stylesheet" href="{{ asset('Front/module/style.css')}}">
+
+
+        <!-- Modernizr JS -->
+        <script src="{{ asset('js/modernizr-2.6.2.min.js')}}"></script>
+    <body id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs" data-aos="fade-in">
+        <div class="container">
+            <h2>Detail Formations</h2>
+            <p>{{ formation.DescriptionFormation }}</p>
+        </div>
+    </div><!-- End Breadcrumbs -->
+
+    <!-- ======= Cource Details Section ======= -->
+    <section id="course-details" class="course-details">
+        <div class="container" data-aos="fade-up">
+
+            <div class="row">
+
+                <div class="col-lg-8">
+                    <img src="{{  asset(formation.getImageFormation())}}" class="img-fluid" alt="" style="height: 250px; width: 90vh;border-radius: 10px">
+                    <h3>Modules et PrereQuis</h3>
+                    <div class="ag-offer-block">
+                        {% for module in formation.moduleFormations %}
+                            <div class="ag-format-container" >
+                                <ul class="ag-offer_list">
+                                    <li class="ag-offer_item" >
+                                        <div class="ag-offer_visible-item">
+                                            <div class="ag-offer_img-box">
+                                                <img src="{{asset('Front/module/images/icons8-module-100.png')}}" alt="" />
+                                            </div>
+                                            <div class="ag-offer_title">
+                                                {{ module.NomModule }}
+                                            </div>
+                                        </div>
+                                        <div class="ag-offer_hidden-item" >
+                                            <h6 style="text-align: center">{{ module.PrerequisModule }}</h6>
+                                            <p class="ag-offer_text">
+                                                {{ module.ContenuModule }}
+                                            </p>
+                                            <br>
+                                            <p style="text-align: center;margin-right: 5px">Duree: {{ module.DureeModule }}</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+
+
+                <div class="col-lg-4">
+
+                    <div class="course-info d-flex justify-content-between align-items-center">
+                        <h5>Tutor</h5>
+                        <p>{{ formation.getFormateur().getNomFormateur()}}</p>
+                    </div>
+
+                    <div class="course-info d-flex justify-content-between align-items-center">
+                        <h5>Niveau</h5>
+                        <p>{{ formation.getNiveauFormation() }}</p>
+                    </div>
+
+                    <div class="course-info d-flex justify-content-between align-items-center">
+                        <h5>Nombre Participants</h5>
+                        <p>30</p>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    </body>
+
+    <script src="{{ asset('Front/module/js/jquery.min.js')}}"></script>
+    <!-- jQuery Easing -->
+    <script src="{{ asset('Front/module/js/jquery.easing.1.3.js')}}"></script>
+    <!-- Bootstrap -->
+    <script src="{{ asset('Front/module/js/bootstrap.min.js')}}"></script>
+    <!-- Waypoints -->
+    <script src="{{ asset('Front/module/js/jquery.waypoints.min.js')}}"></script>
+    <script src="{{ asset('Front/module/js/sticky.js')}}"></script>
+
+    <!-- Stellar -->
+    <script src="{{ asset('Front/module/js/jquery.stellar.min.js')}}"></script>
+    <!-- Superfish -->
+    <script src="{{ asset('Front/module/js/hoverIntent.js')}}"></script>
+    <script src="{{ asset('Front/module/js/superfish.js')}}"></script>
+    <!-- Magnific Popup -->
+    <script src="{{ asset('Front/module/js/jquery.magnific-popup.min.js')}}"></script>
+    <script src="{{ asset('Front/module/js/magnific-popup-options.js')}}"></script>
+
+    <!-- Main JS -->
+    <script src="{{ asset('Front/module/js/main.js')}}"></script>
+    <script src="{{ asset('Front/module/script.js')}}"></script>
+{% endblock %}

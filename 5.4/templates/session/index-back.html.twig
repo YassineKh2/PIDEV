@@ -1,0 +1,94 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}Session index Admin{% endblock %}
+
+{% block body %}
+    <div class="tab">
+        <h1>Session index</h1>
+        <a href="{{ path('app_session_new') }}" class="button_creer"><span class="button_text">Creer Seesion</span></a>
+        {% for session in sessions %}
+            <div class="col-lg-12">
+                <div class="card">
+
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table header-border table-hover verticle-middle">
+                                <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">DateDebutSession</th>
+                                    <th scope="col">DateFinSession</th>
+                                    <th scope="col">NombreParticipantSession Max</th>
+                                    <th scope="col">Difficulte</th>
+                                    <th scope="col">NomSession</th>
+                                    <th scope="col">Despense</th>
+                                    <th scope="col">Actions</th>
+
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                <tr>
+                                    <th>{{ session.id }}</th>
+                                    <th>{{ session.DateDebutSession|date("m/d/Y") }}</th>
+                                    <th>{{ session.DateFinSession |date("m/d/Y")}}</th>
+                                    <th>{{ session.NombreParticipantSession }}</th>
+                                    <th>{%if session.Difficulte== true%}
+                                        {{ "Simple" }}
+                                        {%elseif  session.Difficulte== false%}
+                                            {{ "Difficile" }}
+                                            {% else %}
+                                                {{ "Medium" }}
+                                                {% endif %}</th>
+                                    <th>{{ session.NomSession}}</th>
+                                    <th>{{ session.Despense.getId() }}</th>
+
+                                    <th>
+                                <span><a href="{{ path('app_session_edit', {'id': session.id}) }}" class="mr-4" data-toggle="tooltip"
+                                         data-placement="top" title="Edit"><i
+                                                class="fa fa-pencil color-muted"></i></a>
+                                        {{ include('session/_delete_form.html.twig') }}</th>
+                                    </span>
+
+                                    </th>
+
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        {% endfor %}
+
+    </div>
+    <style>
+        .tab{
+
+            width: 1150px;
+            position: relative;
+            margin-top: 200px;
+            left: 300px;
+        }
+        .button_creer{
+            border: #9c00ff;
+            border-left-style: solid;
+            background: #d2e6ff;
+            border-radius: 5px;
+            position: relative;
+
+
+        }
+        .button_text{
+            color: #7a6666;
+        }
+        .button_text:hover{
+            color: #000000;
+        }
+
+    </style>
+{% endblock %}
+
