@@ -22,6 +22,7 @@ class Evenement
     private ?string $NomEvenement = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Assert\NotBlank(message:"enter date evenement")]
     private ?\DateTimeInterface $DateEvenement = null;
 
     #[ORM\Column]
@@ -32,9 +33,10 @@ class Evenement
     private ?float $PrixEvenement = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message:"enter Type Evenement ")]
     private ?string $TypeEvenement = null;
 
-    #[ORM\ManyToMany(targetEntity: Utilisateur::class, mappedBy: 'Evenements')]
+    #[ORM\ManyToMany(targetEntity: Utilisateur::class, mappedBy: 'Evenemen  ts')]
     private Collection $utilisateurs;
 
     #[ORM\ManyToOne(inversedBy: 'evenements')]
@@ -43,6 +45,9 @@ class Evenement
 
     #[ORM\OneToOne(inversedBy: 'evenement', cascade: ['persist', 'remove'])]
     private ?Adresse $Adresse = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $Imageevenement = null;
 
     public function __construct()
     {
@@ -161,6 +166,18 @@ class Evenement
     public function setAdresse(?Adresse $Adresse): self
     {
         $this->Adresse = $Adresse;
+
+        return $this;
+    }
+
+    public function getImageevenement(): ?string
+    {
+        return $this->Imageevenement;
+    }
+
+    public function setImageevenement(?string $Imageevenement): self
+    {
+        $this->Imageevenement = $Imageevenement;
 
         return $this;
     }

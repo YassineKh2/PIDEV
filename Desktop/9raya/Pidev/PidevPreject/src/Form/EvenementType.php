@@ -2,13 +2,14 @@
 
 namespace App\Form;
 
-use App\Entity\Categorie;
 use App\Entity\Evenement;
 use App\Entity\Organisateur;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 
 class EvenementType extends AbstractType
 {
@@ -26,7 +27,21 @@ class EvenementType extends AbstractType
                 'multiple'=>false,
                 'expanded'=>false,
             ])
-        ;
+            ->add('Imageevenement', FileType::class, [
+                'label' => 'Picture',
+                'mapped' => false,
+                'required' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '5000k',
+                        'mimeTypes' => [
+                            'image/*',
+                        ],
+                        'mimeTypesMessage' => 'Donner une image valide',
+                    ])
+                ],
+            ]);
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/organisateur')]
 class OrganisateurController extends AbstractController
 {
-    #[Route('/', name: 'app_organisateur_index', methods: ['GET'])]
+    #[Route('/', name: 'app_organisateur_index', methods: ['GET', 'POST'])]
     public function index(OrganisateurRepository $organisateurRepository): Response
     {
         return $this->render('organisateur/index.html.twig', [
@@ -31,7 +31,10 @@ class OrganisateurController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $organisateurRepository->save($organisateur, true);
 
-            return $this->redirectToRoute('app_organisateur_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_adresse_neworg', [
+                    'id'=>$organisateur->getId()
+                ], Response::HTTP_SEE_OTHER);
+
         }
 
         return $this->renderForm('organisateur/new.html.twig', [
@@ -57,7 +60,10 @@ class OrganisateurController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $organisateurRepository->save($organisateur, true);
 
-            return $this->redirectToRoute('app_organisateur_index', [], Response::HTTP_SEE_OTHER);
+
+            return $this->redirectToRoute('app_adresse_edit_addr_org', [
+                'id'=>$organisateur->getId()
+            ], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('organisateur/edit.html.twig', [
