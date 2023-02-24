@@ -40,11 +40,28 @@ class ArticleRepository extends ServiceEntityRepository
     }
     public function FindArticleByIdCategorie($id) {
         return $this->createQueryBuilder('c')
-            ->join('c.blog','b')
+            ->join('c.Categorie','b')
             ->addSelect('b')
             ->where('b.id=:id')
             ->setParameter('id',$id)
             ->getQuery()
+            ->getResult();
+    }
+    public function FindArticleByIdCategorieLimited($id)
+    { return $this->createQueryBuilder('c')
+        ->join('c.Categorie','b')
+        ->addSelect('b')
+        ->where('b.id=:id')
+        ->setParameter('id',$id)
+        ->getQuery()
+        ->setMaxResults(6)
+        ->getResult();
+    }
+    public function Find10First() {
+        return $this->createQueryBuilder('c')
+            ->orderBy('c.id', 'DESC')
+            ->getQuery()
+            ->setMaxResults(12)
             ->getResult();
     }
 
@@ -72,4 +89,5 @@ class ArticleRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
 }

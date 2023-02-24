@@ -15,8 +15,6 @@ class Pannier
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\OneToMany(mappedBy: 'pannier', targetEntity: Article::class)]
-    private Collection $Article;
 
     #[ORM\OneToOne(inversedBy: 'pannier', cascade: ['persist', 'remove'])]
     private ?Utilisateur $client = null;
@@ -24,14 +22,43 @@ class Pannier
     #[ORM\Column]
     private ?float $PrixTotalPainner = null;
 
+    #[ORM\OneToMany(mappedBy: 'pannier', targetEntity: Article::class)]
+    private Collection $Article;
+
     public function __construct()
     {
         $this->Article = new ArrayCollection();
     }
 
+
+
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getClient(): ?Utilisateur
+    {
+        return $this->client;
+    }
+
+    public function setClient(?Utilisateur $client): self
+    {
+        $this->client = $client;
+
+        return $this;
+    }
+
+    public function getPrixTotalPainner(): ?float
+    {
+        return $this->PrixTotalPainner;
+    }
+
+    public function setPrixTotalPainner(float $PrixTotalPainner): self
+    {
+        $this->PrixTotalPainner = $PrixTotalPainner;
+
+        return $this;
     }
 
     /**
@@ -64,27 +91,4 @@ class Pannier
         return $this;
     }
 
-    public function getClient(): ?Utilisateur
-    {
-        return $this->client;
-    }
-
-    public function setClient(?Utilisateur $client): self
-    {
-        $this->client = $client;
-
-        return $this;
-    }
-
-    public function getPrixTotalPainner(): ?float
-    {
-        return $this->PrixTotalPainner;
-    }
-
-    public function setPrixTotalPainner(float $PrixTotalPainner): self
-    {
-        $this->PrixTotalPainner = $PrixTotalPainner;
-
-        return $this;
-    }
 }

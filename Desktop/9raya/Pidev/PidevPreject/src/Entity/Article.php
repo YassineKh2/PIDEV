@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ArticleRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -20,7 +22,7 @@ class Article
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message:"Nom de l'Article est requis")]
-    #[Assert\Length(min: 3,max: 15)]
+    #[Assert\Length(min: 3,max: 30)]
     private ?string $NomArticle = null;
 
     #[ORM\Column]
@@ -33,11 +35,26 @@ class Article
     #[Assert\NotBlank(message:"Quantite est requis")]
     private ?int $QuantiteArticle = null;
 
-    #[ORM\ManyToOne(inversedBy: 'Article')]
-    private ?Pannier $pannier = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Image(
+        minWidth: 300,
+        maxWidth: 10000,
+        maxHeight: 10000,
+        minHeight: 300,
+    )]
     private ?string $ImageArticle = null;
+
+    #[ORM\Column(length: 1000)]
+    #[Assert\NotBlank(message:"La discription est requise")]
+    #[Assert\Length(min: 5)]
+    private ?string $ArticleDiscription = null;
+
+    #[ORM\Column(nullable: true)]
+    #[Assert\Positive(message:"Remise doit etre positive")]
+    private ?int $RemisePourcentageArticle = null;
+
+
 
     public function getId(): ?int
     {
@@ -61,7 +78,7 @@ class Article
         return $this->NomArticle;
     }
 
-    public function setNomArticle(string $NomArticle): self
+    public function setNomArticle(?string $NomArticle): self
     {
         $this->NomArticle = $NomArticle;
 
@@ -92,27 +109,41 @@ class Article
         return $this;
     }
 
-    public function getPannier(): ?Pannier
-    {
-        return $this->pannier;
-    }
-
-    public function setPannier(?Pannier $pannier): self
-    {
-        $this->pannier = $pannier;
-
-        return $this;
-    }
-
     public function getImageArticle(): ?string
     {
         return $this->ImageArticle;
     }
 
-    public function setImageArticle(string $ImageArticle): self
+    public function setImageArticle(?string $ImageArticle): self
     {
         $this->ImageArticle = $ImageArticle;
 
         return $this;
     }
+
+    public function getArticleDiscription(): ?string
+    {
+        return $this->ArticleDiscription;
+    }
+
+    public function setArticleDiscription(string $ArticleDiscription): self
+    {
+        $this->ArticleDiscription = $ArticleDiscription;
+
+        return $this;
+    }
+
+    public function getRemisePourcentageArticle(): ?int
+    {
+        return $this->RemisePourcentageArticle;
+    }
+
+    public function setRemisePourcentageArticle(?int $RemisePourcentageArticle): self
+    {
+        $this->RemisePourcentageArticle = $RemisePourcentageArticle;
+
+        return $this;
+    }
+
+
 }

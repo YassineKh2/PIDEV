@@ -18,13 +18,19 @@ class Categorie
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message:"Nom de le categorie est requis")]
-    #[Assert\Length(min: 3,max: 15)]
+    #[Assert\Length(min: 3,max: 30)]
     private ?string $NomCategorie = null;
 
-    #[ORM\OneToMany(mappedBy: 'Categorie', targetEntity: Article::class)]
+    #[ORM\OneToMany(mappedBy: 'Categorie', targetEntity: Article::class, cascade: ["remove","persist"])]
     private Collection $articles;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Image(
+        minWidth: 500,
+        maxWidth: 10000,
+        maxHeight: 10000,
+        minHeight: 500,
+    )]
     private ?string $ImageCategorie = null;
 
     public function __construct()
@@ -42,7 +48,7 @@ class Categorie
         return $this->NomCategorie;
     }
 
-    public function setNomCategorie(string $NomCategorie): self
+    public function setNomCategorie(?string $NomCategorie): self
     {
         $this->NomCategorie = $NomCategorie;
 

@@ -87,6 +87,8 @@ class Centre
 
         return $this;
     }
+    public function __toString():string{
+        return $this->NomCentre;}
 
     /**
      * @return Collection<int, PlanningCentre>

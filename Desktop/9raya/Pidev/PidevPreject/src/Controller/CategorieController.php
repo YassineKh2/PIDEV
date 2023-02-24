@@ -20,24 +20,37 @@ class CategorieController extends AbstractController
             'categories' => $categorieRepository->findAll(),
         ]);
     }
-
-    #[Route('/new', name: 'app_categorie_new', methods: ['GET', 'POST'])]
+       #[Route('/new', name: 'app_categorie_new', methods: ['GET', 'POST'])]
     public function new(Request $request, CategorieRepository $categorieRepository): Response
     {
+
         $categorie = new Categorie();
         $form = $this->createForm(CategorieType::class, $categorie);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $categorieRepository->save($categorie, true);
+            $pictureFile = $form->get('ImageCategorie')->getData();
+            if ($pictureFile) {
+                $pictureFileName = uniqid() . '.' . $pictureFile->guessExtension();
+                $pictureFile->move(
+                    $this->getParameter('pictures_directory'),
+                    $pictureFileName
+                );
+                $pictureFileName = 'Back/images/CategorieImages/' . $pictureFileName;
+                $categorie->setImageCategorie($pictureFileName);
+            }
+            else
+                $categorie->setImageCategorie("Back/images/CategorieImages/NoImageFound.png");
 
+            $categorieRepository->save($categorie, true);
             return $this->redirectToRoute('app_categorie_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('categorie/new.html.twig', [
-            'categorie' => $categorie,
-            'form' => $form,
-        ]);
+            return $this->renderForm('categorie/new.html.twig', [
+                'categorie' => $categorie,
+                'form' => $form,
+            ]);
+
     }
 
     #[Route('/{id}', name: 'app_categorie_show', methods: ['GET'])]
@@ -55,6 +68,17 @@ class CategorieController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $pictureFile = $form->get('ImageCategorie')->getData();
+            if ($pictureFile) {
+                $pictureFileName = uniqid() . '.' . $pictureFile->guessExtension();
+                $pictureFile->move(
+                    $this->getParameter('pictures_directory'),
+                    $pictureFileName
+                );
+                $pictureFileName = 'Back/images/CategorieImages/' . $pictureFileName;
+                $categorie->setImageCategorie($pictureFileName);
+            }
+
             $categorieRepository->save($categorie, true);
 
             return $this->redirectToRoute('app_categorie_index', [], Response::HTTP_SEE_OTHER);

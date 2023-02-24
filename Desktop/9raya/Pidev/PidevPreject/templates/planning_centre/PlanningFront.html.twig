@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveaux centres de planification{% endblock %}
+
+{% block body %}
+    <div class="container-fluid formPlanning">
+        <div class="content-body">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h1 class="title">Les plans disponibles</h1>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                {% for key, planning_centre in planning_centres|batch(2) %}
+                                    <div class="row">
+                                        {% for item in planning_centre %}
+                                            <div class="col-lg-6">
+                                                <table class="table table-striped">
+                                                    <tbody>
+                                                    <tr>
+                                                        <th scope="row">Id</th>
+                                                        <td>{{ item.id }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Date de début de planning</th>
+                                                        <td>{{ item.DateDebutPlanning ? item.DateDebutPlanning|date('Y-m-d') : '' }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Date de fin de planning</th>
+                                                        <td>{{ item.DateFinPlanning ? item.DateFinPlanning|date('Y-m-d') : '' }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Description</th>
+                                                        <td>{{ item.Description }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Titre</th>
+                                                        <td>{{ item.Titre }}</td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .formPlanning {
+            margin-top: 75px;
+            position: relative;
+            width: 1300px;
+            left:20px;
+        }
+        .title {
+            font-size: 30px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 10px;
+            color: #4daea7;
+        }
+    </style>
+
+{% endblock %}

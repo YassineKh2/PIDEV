@@ -7,6 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 #[ORM\Entity(repositoryClass: PlanningCentreRepository::class)]
 class PlanningCentre
@@ -20,13 +22,37 @@ class PlanningCentre
     private ?Centre $Centre = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Assert\GreaterThanOrEqual("today")]
     private ?\DateTimeInterface $DateDebutPlanning = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Assert\Range(min: '+3 day',max: "+3 year")]
     private ?\DateTimeInterface $DateFinPlanning = null;
 
     #[ORM\OneToMany(mappedBy: 'Planning', targetEntity: ActiviteCentre::class)]
     private Collection $activiteCentres;
+
+
+    #[Assert\NotBlank(message:"Saisir le titre SVP")]
+    #[Assert\Length([
+        'min' => 5,
+        'max' => 50,
+        'minMessage' => 'Le Titre doit comporter au moins {{ limit }} caractères',
+        'maxMessage' => 'Le Titre  doit comporter au moins {{ limit }} caractères',
+    ])]
+    #[ORM\Column(length: 50)]
+    private ?string $Titre = null;
+
+
+    #[Assert\NotBlank(message:"Saisir la  descrition SVP")]
+    #[Assert\Length([
+        'min' => 20,
+        'max' => 200,
+        'minMessage' => 'La description doit comporter au moins {{ limit }} caractères',
+        'maxMessage' => 'La description  doit comporter au moins {{ limit }} caractères',
+    ])]
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $Description = null;
 
     public function __construct()
     {
@@ -73,6 +99,8 @@ class PlanningCentre
 
         return $this;
     }
+    public function __toString():string{
+        return $this->Titre;}
 
     /**
      * @return Collection<int, ActiviteCentre>
@@ -100,6 +128,30 @@ class PlanningCentre
                 $activiteCentre->setPlanning(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTitre(): ?string
+    {
+        return $this->Titre;
+    }
+
+    public function setTitre(string $Titre): self
+    {
+        $this->Titre = $Titre;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->Description;
+    }
+
+    public function setDescription(string $Description): self
+    {
+        $this->Description = $Description;
 
         return $this;
     }

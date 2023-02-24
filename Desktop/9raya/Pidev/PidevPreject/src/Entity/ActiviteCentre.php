@@ -5,6 +5,10 @@ namespace App\Entity;
 use App\Repository\ActiviteCentreRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+
+
 
 #[ORM\Entity(repositoryClass: ActiviteCentreRepository::class)]
 class ActiviteCentre
@@ -17,12 +21,35 @@ class ActiviteCentre
     #[ORM\ManyToOne(inversedBy: 'activiteCentres')]
     private ?PlanningCentre $Planning = null;
 
+
+    #[Assert\NotBlank(message:"Saisir le jour SVP")]
     #[ORM\Column(length: 255)]
     private ?string $JourActivite = null;
 
+
+
+
+    #[Assert\NotBlank(message:"Saisir le nom SVP")]
+    #[Assert\Length([
+        'min' => 5,
+        'max' => 50,
+
+        'minMessage' => 'Le nom doit comporter au moins {{ limit }} caractères',
+        'maxMessage' => 'Le nom  doit comporter au moins {{ limit }} caractères',
+
+    ])]
     #[ORM\Column(length: 255)]
     private ?string $NomActivite = null;
 
+
+
+    #[Assert\NotBlank(message:"Saisir le contenu SVP")]
+    #[Assert\Length([
+        'min' => 5,
+        'max' => 50,
+        'minMessage' => 'Le contenu doit comporter au moins {{ limit }} caractères',
+        'maxMessage' => 'Le contenu  doit comporter au moins {{ limit }} caractères',
+    ])]
     #[ORM\Column(length: 255)]
     private ?string $ContenuActivite = null;
 
