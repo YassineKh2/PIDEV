@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\OrganisateurRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: OrganisateurRepository::class)]
@@ -16,15 +17,21 @@ class Organisateur
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message:"enter un nom valide ")]
     private ?string $NomOrganisateur = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank(message:"enter un numero  ")]
+    #[Assert\LessThan(100000000,message:"enter un numero valide  ")]
+    #[Assert\GreaterThan(9999999,message:"enter un numero valide  ")]
     private ?int $NumTelOrganisateur = null;
 
     #[ORM\OneToOne(inversedBy: 'organisateur', cascade: ['persist', 'remove'])]
     private ?Adresse $Adresse = null;
 
     #[ORM\Column]
+    #[Assert\LessThan(100)]
+    #[Assert\NotBlank(message:"enter une pourcentage ")]
     private ?float $PourcentageRevenuOrganisateur = null;
 
     #[ORM\OneToMany(mappedBy: 'Organisateur', targetEntity: Evenement::class)]

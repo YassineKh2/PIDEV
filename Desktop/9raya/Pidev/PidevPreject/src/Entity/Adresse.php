@@ -21,9 +21,11 @@ class Adresse
 
     #[ORM\Column]
     #[Assert\NotBlank(message:"enter Numero Rue")]
+    #[Assert\GreaterThan(0)]
     private ?int $NumRue = null;
 
     #[ORM\Column]
+    #[Assert\LessThan(10000)]
     #[Assert\NotBlank(message:"enter Code Postal")]
     private ?int $CodePostal = null;
 

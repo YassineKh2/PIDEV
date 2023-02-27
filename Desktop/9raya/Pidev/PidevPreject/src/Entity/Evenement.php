@@ -19,18 +19,23 @@ class Evenement
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message:"enter event name ")]
+
     private ?string $NomEvenement = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     #[Assert\NotBlank(message:"enter date evenement")]
+    #[Assert\GreaterThan('today')]
     private ?\DateTimeInterface $DateEvenement = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank(message:"entrer un nombre de participant max ")]
+    #[Assert\GreaterThan(0)]
     private ?int $NombreParticipantEvenement = null;
 
     #[ORM\Column]
     #[Assert\NotBlank(message:"enter event price ")]
-    private ?float $PrixEvenement = null;
+    #[Assert\GreaterThan(0)]
+    private ?int $PrixEvenement = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message:"enter Type Evenement ")]
