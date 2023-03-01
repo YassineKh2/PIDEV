@@ -13,10 +13,10 @@
                             <a href="{{ path('app_planning_centre_new') }}"  class="btn btn-primary mb-2">Ajouter</a>
 
                         </div>
-
+                    <thead>
                         <table class="table table-bordered table-striped verticle-right table-responsive-sm table-hover">
 
-                            <thead>
+
                             <tr>
 
                                 <th >ID</th>
@@ -54,6 +54,7 @@
                                 <td></td>
                                 <td>
                                     I'll n'a pas des plans
+                                </td>
                             {% endfor %}
                             </tbody>
                         </table>
@@ -72,12 +73,11 @@
             button:hover{
                 color: red;
             }
-            .rounded-corners{
-                border-radius: 40%;
-            }
+
 
         </style>
 
+</div>
 </div>
     {% endblock %}
 

@@ -5,81 +5,137 @@
 {% block body %}
 
 
-    <div class="breadcrumbs">
-        <div class="container"><h2>Les plans</h2>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-            <div class="container aos-init aos-animate" data-aos="fade-up">
-                <div class="row aos-init aos-animate" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-                        <div class="content-body">
-                            <div class="row">
-                                <div class="col-xl-12 col-lg-12 col-md-12">
-                                    <div class="card">
-                                        <div class="card-header">
+  <meta content="" name="description">
+  <meta content="" name="keywords">
 
-                                        </div>
-                                        <tbody>
-                                        <div class="container-fluid formPlanning">
-                                            <div class="card-body">
-                                                <div class="table-responsive">
-                                                    {% for key, planning_centre in planning_centres|batch(2) %}
-                                                        <div class="row">
-                                                            {% for item in planning_centre %}
-                                                                <div class="col-lg-6">
-                                                                    <table class="table table-striped">
+  <!-- Favicons -->
+  <link href="{{ asset('Front/Plan/assets/img/favicon.png')}}" rel="icon">
+  <link href="{{ asset('Front/Plan/assets/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
 
-                                                                        <tr>
-                                                                            <th scope="row">Id</th>
-                                                                            <td>{{ item.id }}</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th scope="row">Date de début de planning</th>
-                                                                            <td>{{ item.DateDebutPlanning ? item.DateDebutPlanning|date('Y-m-d') : '' }}</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th scope="row">Date de fin de planning</th>
-                                                                            <td>{{ item.DateFinPlanning ? item.DateFinPlanning|date('Y-m-d') : '' }}</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th scope="row">Description</th>
-                                                                            <td>{{ item.Description }}</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th scope="row">Titre</th>
-                                                                            <td>{{ item.Titre }}</td>
-                                                                        </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-                                                            {% endfor %}
-                                                        </div>
-                                                    {% endfor %}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{{ asset('Front/Plan/assets/vendor/animate.css/animate.min.css')}}" rel="stylesheet">
+  <link href="{{ asset('Front/Plan/assets/vendor/aos/aos.css')}}" rel="stylesheet">
+  <link href="{{ asset('Front/Plan/assets/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+  <link href="{{ asset('Front/Plan/assets/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
+  <link href="{{ asset('Front/Plan/assets/vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
+  <link href="{{ asset('Front/Plan/assets/vendor/glightbox/css/glightbox.min.css')}}" rel="stylesheet">
+  <link href="{{ asset('Front/Plan/assets/vendor/remixicon/remixicon.css')}}" rel="stylesheet">
+  <link href="{{ asset('Front/Plan/assets/vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{{ asset('Front/Plan/assets/css/style.css')}}" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Anyar - v4.10.0
+  * Template URL: https://bootstrapmade.com/anyar-free-multipurpose-one-page-bootstrap-theme/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+
+
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+
+        <ol>
+          <li><a href="index.html">Home</a></li>
+        </ol>
+        <h2>Plan</h2>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <!-- ======= Blog Section ======= -->
+    <section id="blog" class="blog">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row">
+
+          <div class="col-lg-8 entries">
+            {% for item in planning_centres %}
+            <article class="entry">
+
+              <div class="entry-img">
+                <img src="Front/Plan/assets/img/blog/blog-1.jpg" alt="" class="img-fluid">
+              </div>
+
+              <h2 class="entry-title">
+                <a href="blog-single.html"><th scope="row"></th>
+                  <td>{{ item.Titre }}</td></a>
+              </h2>
+
+              <div class="entry-meta">
+                <ul>
+                  <li class="d-flex align-items-center"><i <span id="boot-icon" class="bi bi-clock" style="font-size: 1rem; color: rgb(0, 128, 55);"></span></i> <a href="blog-single.html"><th scope="row"></th>
+                      <td>{{ item.DateDebutPlanning ? item.DateDebutPlanning|date('Y-m-d') : '' }}</td></a></li>
+                  <li class="d-flex align-items-center"><i <span id="boot-icon" class="bi bi-clock" style="font-size: 1rem; color: rgb(255, 0, 0);"></span></i> <a href="blog-single.html"><th scope="row"></th>
+                      <td>{{ item.DateFinPlanning ? item.DateFinPlanning|date('Y-m-d') : '' }}</td></a></li>
+
+                </ul>
+              </div>
+
+              <div class="entry-content">
+                <p>
+                <th scope="row">Description</th>
+                <td>{{ item.Description }}</td>
+                </p>
+                <div class="read-more">
+                  <a href="/activitecentre/front">Activité</a>
                 </div>
-            </div>
+              </div>
+
+            </article><!-- End blog entry -->
+
+            {% endfor %}
+
+
+
+
+
+
+
+          </div><!-- End blog entries list -->
+
+          <div class="col-lg-4">
+
+            <div class="sidebar">
+
+              <h3 class="sidebar-title">Search</h3>
+              <div class="sidebar-item search-form">
+                <form action="">
+                  <input type="text">
+                  <button type="submit"><i class="bi bi-search"></i></button>
+                </form>
+
+
         </div>
-    </div>
-    <style>
-        .formPlanning {
-            margin-top: 75px;
-            position: relative;
-            width: 1300px;
-            left:20px;
-        }
-        .title {
-            font-size: 30px;
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 10px;
-            color: #4daea7;
-        }
-    </style>
+
+      </div>
+    </section><!-- End Blog Section -->
+
+  </main><!-- End #main -->
+
+  <!-- Vendor JS Files -->
+  <script src="{{ asset('Front/Plan/assets/vendor/aos/aos.js')}}"></script>
+  <script src="{{ asset('Front/Plan/assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+  <script src="{{ asset('Front/Plan/assets/vendor/glightbox/js/glightbox.min.js')}}"></script>
+  <script src="{{ asset('Front/Plan/assets/vendor/isotope-layout/isotope.pkgd.min.js')}}"></script>
+  <script src="{{ asset('Front/Plan/assets/vendor/swiper/swiper-bundle.min.js')}}"></script>
+  <script src="{{ asset('Front/Plan/assets/vendor/php-email-form/validate.js')}}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{{ asset('Front/Plan/assets/js/main.js')}}"></script>
+
+
+
 
 {% endblock %}

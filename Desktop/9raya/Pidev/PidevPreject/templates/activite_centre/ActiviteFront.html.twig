@@ -2,93 +2,138 @@
 
 {% block title %}Liste des activités{% endblock %}
 
-{% block stylesheets %}
-    {{ parent() }}
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
-{% endblock %}
-
 {% block body %}
-    <div class="formppp">
-        <div class="formaaa">
-            <div class="container mt-5">
-                <div class="titre">
-                    <h1 class="titre">Liste des activités</h1>
-                    <style>
-                        .titre {
-                            font-size: 50px;
-                            font-weight: bold;
-                            text-align: center;
-                            margin-bottom: 35px;
-                            color: #4daea7;
-                            margin-top: 110px;
-                        }
-                    </style>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="col-10">
-                        <table id="activite-centres-table" class="table table-striped table-bordered">
-                            <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Jour</th>
-                                <th>Nom</th>
-                                <th>Description</th>
-                                <th>Heure début</th>
-                                <th>Heure fin</th>
-                                <th>Nombre max de participants</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {% for activite_centre in activite_centres %}
-                                <tr>
-                                    <td>{{ activite_centre.id }}</td>
-                                    <td>{{ activite_centre.JourActivite }}</td>
-                                    <td>{{ activite_centre.NomActivite }}</td>
-                                    <td>{{ activite_centre.ContenuActivite }}</td>
-                                    <td>{{ activite_centre.HeureDebutActivite ? activite_centre.HeureDebutActivite|date('H:i:s') : '' }}</td>
-                                    <td>{{ activite_centre.HeureFinActivite ? activite_centre.HeureFinActivite|date('H:i:s') : '' }}</td>
-                                    <td>{{ activite_centre.NombreParticipantActiviteMax }}</td>
-                                </tr>
-                            {% else %}
-                                <tr>
-                                    <td colspan="7">Aucune activité trouvée.</td>
-                                </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+
+
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="{{ asset('Front/Plan/assets/img/favicon.png')}}" rel="icon">
+    <link href="{{ asset('Front/Plan/assets/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="{{ asset('Front/Plan/assets/vendor/animate.css/animate.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('Front/Plan/assets/vendor/aos/aos.css')}}" rel="stylesheet">
+    <link href="{{ asset('Front/Plan/assets/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('Front/Plan/assets/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
+    <link href="{{ asset('Front/Plan/assets/vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('Front/Plan/assets/vendor/glightbox/css/glightbox.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('Front/Plan/assets/vendor/remixicon/remixicon.css')}}" rel="stylesheet">
+    <link href="{{ asset('Front/Plan/assets/vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="{{ asset('Front/Plan/assets/css/style.css')}}" rel="stylesheet">
+
+    <!-- =======================================================
+    * Template Name: Anyar - v4.10.0
+    * Template URL: https://bootstrapmade.com/anyar-free-multipurpose-one-page-bootstrap-theme/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
+
+
+
+    <main id="main">
+
+        <!-- ======= Breadcrumbs ======= -->
+        <section id="breadcrumbs" class="breadcrumbs">
+            <div class="container">
+
+                <ol>
+                    <li><a href="index.html"></a></li>
+                </ol>
+                <h2>Activité</h2>
+
             </div>
-        </div>
-    </div>
+        </section><!-- End Breadcrumbs -->
+
+        <!-- ======= Blog Section ======= -->
+        <section id="blog" class="blog">
+            <div class="container" data-aos="fade-up">
+
+                <div class="row">
+
+                    <div class="col-lg-8 entries">
+                        {% for activite_centre in activite_centres %}
+                            <article class="entry">
+
+                                <div class="entry-img">
+                                    <img src="Front/Plan/assets/img/blog/blog-1.jpg" alt="" class="img-fluid">
+                                </div>
+
+                                <h2 class="entry-title">
+                                    <a href="blog-single.html"><th scope="row"></th>
+                                        <td>{{ activite_centre.NomActivite }}</td></a>
+                                </h2>
+
+                                <div class="entry-meta">
+                                    <ul>
+                                        <li class="d-flex align-items-center"><i <span id="boot-icon" class="bi bi-clock" style="font-size: 1rem; color: rgb(0, 128, 55);"></span></i> <a href="blog-single.html"><th scope="row"></th>
+                                                <td>{{ activite_centre.HeureDebutActivite ? activite_centre.HeureDebutActivite|date('H:i:s') : '' }}</td></a></li>
+                                        <li class="d-flex align-items-center"><i <span id="boot-icon" class="bi bi-clock" style="font-size: 1rem; color: rgb(255, 0, 0);"></span></i> <a href="blog-single.html"><th scope="row"></th>
+                                                <td>{{ activite_centre.HeureFinActivite ? activite_centre.HeureFinActivite|date('H:i:s') : '' }}</td></a></li>
+
+                                    </ul>
+                                </div>
+
+                                <div class="entry-content">
+                                    <p>
+                                    <th scope="row">Description</th>
+                                    <td>{{ activite_centre.ContenuActivite }}</td>
+                                    </p>
+
+                                </div>
+
+                            </article><!-- End blog entry -->
+
+                        {% endfor %}
+
+
+
+
+
+
+
+                    </div><!-- End blog entries list -->
+
+                    <div class="col-lg-4">
+
+                        <div class="sidebar">
+
+                            <h3 class="sidebar-title">Search</h3>
+                            <div class="sidebar-item search-form">
+                                <form action="">
+                                    <input type="text">
+                                    <button type="submit"><i class="bi bi-search"></i></button>
+                                </form>
+
+
+                            </div>
+
+                        </div>
+        </section><!-- End Blog Section -->
+
+    </main><!-- End #main -->
+
+    <!-- Vendor JS Files -->
+    <script src="{{ asset('Front/Plan/assets/vendor/aos/aos.js')}}"></script>
+    <script src="{{ asset('Front/Plan/assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{ asset('Front/Plan/assets/vendor/glightbox/js/glightbox.min.js')}}"></script>
+    <script src="{{ asset('Front/Plan/assets/vendor/isotope-layout/isotope.pkgd.min.js')}}"></script>
+    <script src="{{ asset('Front/Plan/assets/vendor/swiper/swiper-bundle.min.js')}}"></script>
+    <script src="{{ asset('Front/Plan/assets/vendor/php-email-form/validate.js')}}"></script>
+
+    <!-- Template Main JS File -->
+    <script src="{{ asset('Front/Plan/assets/js/main.js')}}"></script>
+
+
+
+
 {% endblock %}
-
-{% block javascripts %}
-    {{ parent() }}
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('#activite-centres-table').DataTable({
-                "language": {
-                    "url": "https://cdn.datatables.net/plug-ins/1.11.3/i18n/fr_fr.json"
-                }
-            });
-        });
-    </script>
-    <style>
-        .formppp {
-            margin-top: 50px;
-            position: relative;
-            width: 100%;
-            text-align: center;
-        }
-        .formaaa {
-            display: inline-block;
-            text-align: left;
-        }
-    </style>
-{% endblock %}
-
-

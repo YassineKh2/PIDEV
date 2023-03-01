@@ -54,6 +54,9 @@ class PlanningCentre
     #[ORM\Column(type: Types::TEXT)]
     private ?string $Description = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $Image = null;
+
     public function __construct()
     {
         $this->activiteCentres = new ArrayCollection();
@@ -152,6 +155,18 @@ class PlanningCentre
     public function setDescription(string $Description): self
     {
         $this->Description = $Description;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->Image;
+    }
+
+    public function setImage(string $Image): self
+    {
+        $this->Image = $Image;
 
         return $this;
     }
